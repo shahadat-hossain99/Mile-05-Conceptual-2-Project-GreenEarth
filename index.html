@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GREEN EARTH</title>
+
+    <!-- Font Awesome link -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Daisy UI + Tailwind css -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Font[Poppins & Hind Siliguri
+] -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS StyleSheet link-->
+
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <!-- <h2>Choose Your </h2> -->
+
+    <main class="container mx-auto w-11/12">
+      <h2 class="font-bold text-4xl text-center btn-primary">
+        Choose Your Trees
+      </h2>
+
+      <div id="col-container" class="grid grid-cols-12 gap-8">
+        <!-- Category Section -->
+
+        <div
+          class="col-span-3 mt-10 space-y-4 bg-white card card-body shadow-2xl"
+        >
+          <h3 class="text-2xl font-bold">Categories</h3>
+          <div class="space-y-3 sticky top-8">
+            <button id="allTreesBtn" class="btn btn-success w-full">
+              All Trees
+            </button>
+
+            <div id="categoriesContainer" class="space-y-3">
+              <!-- Categories will be appier here with  api -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Trees Card section -->
+
+        <div class="col-span-6">
+          <div
+            id="treesContainer"
+            class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-7"
+          >
+            <!-- dynamically loaded -->
+
+            <!-- <div class="card bg-white shadow-sm">
+              <figure>
+                <img
+                  src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                  alt="Shoes"
+                />
+              </figure>
+              <div class="card-body">
+                <h2 class="card-title text-success">Card Title</h2>
+                <p class="line-clamp-2">
+                  A card component has a figure, a body part, and inside body
+                  there are title and actions parts
+                </p>
+                <div class="badge badge-outline badge-success">Success</div>
+
+                <div class="card-actions justify-between items-center">
+                  <h2 class="font-bold text-xl text-success">$ 500</h2>
+                  <button class="btn btn-success">Buy Now</button>
+                </div>
+              </div>
+
+            </div> -->
+          </div>
+          <div
+            id="loadingSpinner"
+            class="h-[60vh] hidden justify-center items-center"
+          >
+            <span class="loading loading-dots loading-xl"></span>
+          </div>
+        </div>
+
+        <!-- Cart Section -->
+
+        <div class="col-span-3"></div>
+      </div>
+    </main>
+
+    <!-- js -->
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
