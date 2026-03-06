@@ -1,6 +1,7 @@
 console.log("Hi from shahadat");
 
 const loadingSpinner = document.getElementById("loadingSpinner");
+const treeDetailModal = document.getElementById("tree-detail-modal");
 
 const showLoading = () => {
   loadingSpinner.classList.remove("hidden");
@@ -73,6 +74,23 @@ const selectCategory = async (categoryId, btn) => {
 
   hideLoading();
 };
+const allTreesBtn = document.getElementById("allTreesBtn");
+
+allTreesBtn.addEventListener("click", () => {
+  const allButtons = document.querySelectorAll(
+    "#categoriesContainer button,#allTreesBtn",
+  );
+
+  allButtons.forEach((btn) => {
+    btn.classList.remove("btn-success");
+    btn.classList.add("btn-soft");
+  });
+
+  allTreesBtn.classList.add("btn-success");
+  allTreesBtn.classList.remove("btn-soft");
+
+  loadTrees();
+});
 
 const loadTrees = async () => {
   showLoading();
@@ -98,14 +116,17 @@ const displayTrees = (trees) => {
     <div class="card bg-white shadow-sm">
               <figure>
                 <img
+                
                   src="${tree.image}"
                   alt="${tree.name}"
                   title="${tree.name}"
-                  class="h-48 w-full object-cover"
+                  class="h-48 cursor-pointer w-full object-cover"
+                  onclick="displayTreeModal(${tree.id})"
+                   
                 />
               </figure>
               <div class="card-body">
-                <h2 class="card-title text-success">${tree.name}</h2>
+                <h2 class="card-title hover:text-blue-500 cursor-pointer text-success" onclick="displayTreeModal(${tree.id})">${tree.name}</h2>
                 <p class="line-clamp-2">
                   ${tree.description}
                 </p>
@@ -113,7 +134,7 @@ const displayTrees = (trees) => {
 
                 <div class="card-actions justify-between items-center">
                   <h2 class="font-bold text-xl text-success">$ ${tree.price}</h2>
-                  <button class="btn btn-success">Buy Now</button>
+                  <button onclick="addToCart(${tree.id},${tree.name},${tree.price})" class="btn btn-success" >Buy</button>
                 </div>
               </div>
 
@@ -122,6 +143,31 @@ const displayTrees = (trees) => {
 
     treesContainer.appendChild(treeCard);
   });
+};
+
+const modalPrice = document.getElementById("modalPrice");
+const modalDescription = document.getElementById("modalDescription");
+const modalCategory = document.getElementById("modalCategory");
+const modalImage = document.getElementById("modalImage");
+const modalTitle = document.getElementById("modalTitle");
+
+const displayTreeModal = async (treeId) => {
+  console.log(treeId, "treeId");
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/plant/${treeId}`,
+  );
+  const data = await res.json();
+  console.log(data, "data");
+  const plantDetails = data.plants;
+  console.log(plantDetails, "data");
+
+  modalTitle.textContent = plantDetails.name;
+  modalImage.src = plantDetails.image;
+  modalCategory.textContent = plantDetails.category;
+  modalDescription.textContent = plantDetails.description;
+  modalPrice.textContent = plantDetails.price;
+
+  treeDetailModal.showModal();
 };
 
 // displayCategories();
